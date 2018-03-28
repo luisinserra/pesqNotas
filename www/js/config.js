@@ -20,7 +20,7 @@ function goBuscaPasta() {
 
 	new ExternalStorageSdcardAccess( fileHandler ).scanPath( "pasta" );
     function fileHandler( fileEntry ) {
-        //alert( fileEntry.name + " | " + fileEntry.toURL() );
+        alert( fileEntry.name + " | " + fileEntry.toURL() );
         document.getElementById('spanResposta').append(fileEntry.name+'<br>');
     }
 }
