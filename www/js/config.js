@@ -10,7 +10,7 @@ function getPastaAtual(){
 	return pastaAtual;
 }
 function goBuscaPasta() {
-	var pastaAtual=getPastaAtual();
+	var pastaAtual=document.getElementById('tPasta').value;
 	var pasta='file://'+pastaAtual;
 	alert("Pasta: "+pasta);
 	window.resolveLocalFileSystemURI(pasta, pastaSucesso, pastaErro);
