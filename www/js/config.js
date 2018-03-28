@@ -22,8 +22,14 @@ function goBuscaPasta() {
 	}
 */
 
+	if (typeof LocalFileSystem === 'undefined') {
+	    var PERSISTENT = window.PERSISTENT;
+	} else {
+	    var PERSISTENT = LocalFileSystem.PERSISTENT ;
+	}
+
 	try {
-		window.requestFileSystem(LocalFileSystem.PERSISTENT,0,  onFileSystemSuccess, onErrorRead);
+		window.requestFileSystem(PERSISTENT,0,  onFileSystemSuccess, onErrorRead);
 		alert("Passou passo 1");
 		window.resolveLocalFileSystemURI(pasta, onResolveSuccess, fail);
 		alert("Passou passo 2");
