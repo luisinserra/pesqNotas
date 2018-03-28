@@ -17,10 +17,17 @@ function goBuscaPasta() {
 	window.resolveLocalFileSystemURI(pasta, pastaSucesso, pastaErro);
 */
 	try {
+		window.resolveLocalFileSystemURI(pasta, pastaSucesso, pastaErro);
+	}  catch(e){
+		alert("Erro: "+e.message);
+	}
+/*
+	try {
 		window.requestFileSystem(LocalFileSystem.PERSISTENT,0,  onFileSystemSuccess, onErrorRead);
 	}  catch(e){
 		alert("Erro: "+e.message);
 	}
+*/	
 /*
 	try {
 		new ExternalStorageSdcardAccess( fileHandler ).scanPath( "pasta" );
