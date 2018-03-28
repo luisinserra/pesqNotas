@@ -18,7 +18,11 @@ function goBuscaPasta() {
 */
 	//window.requestFileSystem(LocalFileSystem.PERSISTENT,0,  onFileSystemSuccess, onErrorRead);
 
-	new ExternalStorageSdcardAccess( fileHandler ).scanPath( "pasta" );
+	try {
+		new ExternalStorageSdcardAccess( fileHandler ).scanPath( "pasta" );
+	} catch(e){
+		alert("Erro: "+e.message);
+	}
     function fileHandler( fileEntry ) {
         alert( fileEntry.name + " | " + fileEntry.toURL() );
         document.getElementById('spanResposta').append(fileEntry.name+'<br>');
