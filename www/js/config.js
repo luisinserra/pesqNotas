@@ -15,19 +15,31 @@ function goBuscaPasta() {
 	alert("Pasta: "+pasta);
 /*	
 	window.resolveLocalFileSystemURI(pasta, pastaSucesso, pastaErro);
-*/
 	try {
 		window.resolveLocalFileSystemURI(pasta, pastaSucesso, pastaErro);
 	}  catch(e){
 		alert("Erro: "+e.message);
 	}
-/*
+*/
+
 	try {
 		window.requestFileSystem(LocalFileSystem.PERSISTENT,0,  onFileSystemSuccess, onErrorRead);
+		alert("Passou passo 1");
+		window.resolveLocalFileSystemURI(pasta, onResolveSuccess, fail);
+		alert("Passou passo 2");
 	}  catch(e){
 		alert("Erro: "+e.message);
 	}
-*/	
+
+	function onResolveSuccess(fileEntry) {
+		alert("resolvido.");
+        console.log(fileEntry.name);
+    }
+
+    function fail(evt) {
+        console.log(evt.target.error.code);
+    }
+	
 /*
 	try {
 		new ExternalStorageSdcardAccess( fileHandler ).scanPath( "pasta" );
