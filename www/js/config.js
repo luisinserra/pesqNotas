@@ -16,8 +16,12 @@ function goBuscaPasta() {
 /*	
 	window.resolveLocalFileSystemURI(pasta, pastaSucesso, pastaErro);
 */
-	//window.requestFileSystem(LocalFileSystem.PERSISTENT,0,  onFileSystemSuccess, onErrorRead);
-
+	try {
+		window.requestFileSystem(LocalFileSystem.PERSISTENT,0,  onFileSystemSuccess, onErrorRead);
+	}  catch(e){
+		alert("Erro: "+e.message);
+	}
+/*
 	try {
 		new ExternalStorageSdcardAccess( fileHandler ).scanPath( "pasta" );
 	} catch(e){
@@ -27,6 +31,7 @@ function goBuscaPasta() {
         alert( fileEntry.name + " | " + fileEntry.toURL() );
         document.getElementById('spanResposta').append(fileEntry.name+'<br>');
     }
+*/    
 }
 function onFileSystemSuccess(fs) {
     alert("Sucesso");
