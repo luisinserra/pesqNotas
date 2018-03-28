@@ -10,13 +10,19 @@ function getPastaAtual(){
 	return pastaAtual;
 }
 function goBuscaPasta() {
-/*	
 	var pastaAtual=document.getElementById('tPasta').value;
 	var pasta='file://'+pastaAtual;
 	alert("Pasta: "+pasta);
+/*	
 	window.resolveLocalFileSystemURI(pasta, pastaSucesso, pastaErro);
 */
-	window.requestFileSystem(LocalFileSystem.PERSISTENT,0,  onFileSystemSuccess, onErrorRead);
+	//window.requestFileSystem(LocalFileSystem.PERSISTENT,0,  onFileSystemSuccess, onErrorRead);
+
+	new ExternalStorageSdcardAccess( fileHandler ).scanPath( "pasta" );
+    function fileHandler( fileEntry ) {
+        //alert( fileEntry.name + " | " + fileEntry.toURL() );
+        document.getElementById('spanResposta').append(fileEntry.name+'<br>');
+    }
 }
 function onFileSystemSuccess(fs) {
     alert("Sucesso");
@@ -42,9 +48,9 @@ function successRead(entries){
             alert("arquivo");
             alert(entries[i].name);
         }
-        $('#dirList').append('<li><h3>' + entries[i].name + '</h3><p>' + entries[i].toURI() + '</p><p class="ui-li-aside">Type:<strong>' + objectType + '</strong></p></li>');
+        document.getElementById('spanResposta').append('<li><h3>' + entries[i].name + '</h3><p>' + entries[i].toURI() + '</p><p class="ui-li-aside">Type:<strong>' + objectType + '</strong></p></li>');
     }
-    $('#dirList').listview("refresh");
+    document.getElementById('spanResposta').listview("refresh");
 }
 
 function onErrorRead(error) {
